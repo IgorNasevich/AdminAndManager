@@ -24,7 +24,8 @@ class LogIn extends Component {
 			this.props.changeUserType('manager')
 		}
 		else{
-			this.props.changeUserType('logIn')
+			alert('Неправильный логин или пароль')
+			
 		}
 		
 	}
