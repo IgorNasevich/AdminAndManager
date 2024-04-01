@@ -21,7 +21,7 @@ class ManagerOrAndmin extends Component {
 		return true
 	}
 
-	onValueChangeAdmin = (e) => {
+	onDateChangeAdmin = (e) => {
 		let selectedData = new Date(e.target.value)
 		let monthlyIncome = this.props.calculateIncome(selectedData.getMonth())
 		this.setState({
@@ -31,8 +31,7 @@ class ManagerOrAndmin extends Component {
 		
 	}
 
-	onValueChangeManager = (e) => {
-		console.log(this.state.date)
+	onValueChange = (e) => {
 		this.setState({
 			[e.target.name] : e.target.value 
 		})
@@ -89,30 +88,30 @@ class ManagerOrAndmin extends Component {
 			let {name, adress, income,date} = this.state
 			let buttonText = userType === 'admin' ? 'сводный отчёт за месяц' : 'сохранить отчёт'
 			let onClickCallBack = userType === 'admin' ? this.onClickCallBackAdmin : this.onClickCallBackManager
-			let onValueChange = userType === 'admin' ? this.onValueChangeAdmin : this.onValueChangeManager
+			let onDateChange = userType === 'admin' ? this.onDateChangeAdmin : this.onValueChange
 			currPage = (
 				<div className = 'wrapper'>
 					<div className = "red">{userType}</div>
-					<input onChange = {onValueChange}
+					<input onChange = {onDateChange}
 						placeholder = "введите Дату" 
 						type = "date" 
 						name = 'date'
 						min="2024-01-01" 
 						max={`${dateArr[0]}-${dateArr[1]}-${dateArr[2].slice(0,2)}`}
 						value = {date}/>
-					<input onChange = {onValueChange}
+					<input onChange = {this.onValueChange}
 						placeholder = "введите ФИО" 
 						type = "text" 
 						name = 'name'
 						value = {name}/>
-					<input onChange = {onValueChange}
+					<input onChange = {this.onValueChange}
 						placeholder = "введите адрес точки" 
 						type = "text" 
 						name = 'adress'
 						value = {adress}/>
-					<input onChange = {onValueChange}
+					<input onChange = {this.onValueChange}
 						placeholder = "введите выручку за день"
-						type = "text"
+						type = "number"
 						name = 'income'
 						value = {income} />
 					<button onClick = {this.getReport} className = "submit">отчёт за выбранный день</button>
