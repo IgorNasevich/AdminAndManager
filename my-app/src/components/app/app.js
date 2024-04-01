@@ -7,7 +7,7 @@ import ManagerOrAndmin from '../manager/manager';
 class App extends Component{
 	
 	state = {
-		userType: 'admin',
+		userType: 'logIn',
 		reports: null
 	}
 
@@ -28,7 +28,7 @@ class App extends Component{
 				newReports[month][day] = {
 					name,
 					adress,
-					income
+					income: +income
 				}
 				return {
 					reports: newReports
